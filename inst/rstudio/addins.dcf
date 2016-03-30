@@ -1,0 +1,19 @@
+Name: Insert [[PageBreak]]
+Description: Inserts a page break into the advanced format text file.
+Binding: insertPageBreak
+Interactive: false
+
+Name: Insert [[Question:TE]]
+Description: Inserts a text entry question into the advanced format text file.
+Binding: insertTextEntry
+Interactive: false
+
+Name: Insert [[Question:MC]]
+Description: Inserts a multiple choice question into the advanced format text file.
+Binding: insertMultipleChoice
+Interactive: false
+
+Name: Insert [[Question:Matrix]]
+Description: Inserts a matrix question into the advanced format text file.
+Binding: insertMatrix
+Interactive: false
