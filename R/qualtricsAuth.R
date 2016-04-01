@@ -1,3 +1,3 @@
-function (username, token, file = "qualtricsAuth.RData") {
+function (username, token, file = "qualtricsAuthInfo.RData") {
   save(username, token, file = file)
 }

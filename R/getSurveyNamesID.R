@@ -1,12 +1,12 @@
-surveyNamesID = function (username, token, format) {
-  url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.4&Request=getSurveys",
-              "&User=",username,
-              "&Token=",token,
-              "&Format=",format,
-              sep="")
+function (username, token, format) {
+  url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getSurveys",
+              "&User=", username,
+              "&Token=", token,
+              "&Format=", format,
+              sep = "")
   
-  url = gsub("[@]","%40",url)
-  url = gsub("[#]","%23",url)
+  url = gsub("[@]", "%40", url)
+  url = gsub("[#]", "%23", url)
   
   surveynames = GET(url)
   
