@@ -1,4 +1,5 @@
-function (username, token, format) {
+# @export
+getSurveyNamesID = function (username, token, format) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getSurveys",
               "&User=", username,
               "&Token=", token,
