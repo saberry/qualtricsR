@@ -1,5 +1,7 @@
 # @export
-importQualtricsSurvey = function (username, token, format, surveyName, inputFormat, fileLocation) {
+importQualtricsSurvey = function (username = username, token = token, 
+                                  format = "XML", surveyName, inputFormat = "TXT", 
+                                  fileLocation) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=importSurvey",
               "&User=", username,
               "&Token=", token,
