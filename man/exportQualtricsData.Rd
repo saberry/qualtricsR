@@ -11,11 +11,11 @@ exportQualtricsData(username, token, format, surveyID, dropExtra = FALSE)
 }
 
 \arguments{
-  \item{username}{Your username from Qualtrics.
+  \item{username}{Your username from Qualtrics.  Defaults to 'username' from qualtricsAuth function (it has to be ran and loaded first).
 }
-  \item{token}{Your token from Qualtrics.
+  \item{token}{Your token from Qualtrics.  Defaults to 'token' from qualtricsAuth function (it has to be ran and loaded first).
 }
-  \item{format}{The format of the data - use "CSV".
+  \item{format}{Valid options include "XML", "CSV", "HTML", "JSON"; default is "CSV".
 }
   \item{surveyID}{The survey ID from Qualtrics.
 }
@@ -39,8 +39,19 @@ exportQualtricsData(username, token, format, surveyID, dropExtra = FALSE)
 
 ### Not Run ###
 
-exportQualtricsData("qualtricsUser@email.address#brand", "tokenString", 
-                    "CSV", "idString", dropExtra = TRUE)
+# Establish qualtricsAuth file first #
+
+qualtricsAuth("username", "token") # You must provide these strings from Qualtrics.
+
+load("file/location/qualtricsAuthInfo.RData")
+
+exportQualtricsData(surveyID = "idString")
+
+# Without qualtricsAuth #
+
+exportQualtricsData(username = "qualtricsUser@email.address#brand", 
+                    token = "tokenString", format = "CSV", 
+                    surveyID = "idString", dropExtra = TRUE)
 
 }
 \keyword{ Qualtrics }

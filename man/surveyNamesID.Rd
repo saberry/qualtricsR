@@ -11,11 +11,11 @@ surveyNamesID(username, token, format)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{username}{If you have ran the 'qualtricsAuth' function, then you can simply use 'username' here. Otherwise, you will need to use your regular Qualtrics username (e.g., "qualtricsUser@email.address#brand").
+  \item{username}{Defaults to 'username' from qualtricsAuth function (it has to be ran and loaded first).  Otherwise, you will need to use your regular Qualtrics username (e.g., "qualtricsUser@email.address#brand").  
 }
-  \item{token}{If you have ran the 'qualtricsAuth' function, then you can simply use 'token' here. Otherwise, you will need to use your regular Qualtrics token (e.g., "tokenString").
+  \item{token}{Defaults to 'token' from qualtricsAuth function (it has to be ran and loaded first).  Otherwise, you will need to use your regular Qualtrics token (e.g., "tokenString").
 }
-  \item{format}{This should be "XML".
+  \item{format}{Valid options are "XML", "JSON", "JSONP"; default is "XML".
 }
 }
 \details{
@@ -31,7 +31,19 @@ Seth Berry
 \examples{
 ### Not Run ###
 
-surveyNamesID("qualtricsUser@email.address#brand", "tokenString", "XML")
+# Establish qualtricsAuth file first #
+
+qualtricsAuth("username", "token") # You must provide these strings from Qualtrics.
+
+load("file/location/qualtricsAuthInfo.RData")
+
+surveyNamesID()
+
+# Without qualtricsAuth #
+
+surveyNamesID(username = "qualtricsUser@email.address#brand", token = "tokenString")
+
+### End Not Run ###
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
