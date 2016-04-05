@@ -1,4 +1,4 @@
-# @export
+#' @export
 exportQualtricsData = function (username = username, token = token, 
                                 format = "CSV", surveyID, dropExtra = FALSE) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getLegacyResponseData",

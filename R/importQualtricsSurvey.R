@@ -1,4 +1,4 @@
-# @export
+#' @export
 importQualtricsSurvey = function (username = username, token = token, 
                                   format = "XML", surveyName, inputFormat = "TXT", 
                                   fileLocation) {
