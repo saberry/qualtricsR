@@ -9,7 +9,8 @@
 #' This function works best as an addin for RStudio (v0.99.878 or newer).
 #' @examples
 #' insertMatrix()
+#' @importFrom rstudioapi insertText
 #' @export
 insertMatrix = function() {
-  rstudioapi::insertText("[[Question:Matrix]]\n[[ID: ]]\n\n[[Choices]]\n\n[[Answers]]")
+  insertText("[[Question:Matrix]]\n[[ID: ]]\n\n[[Choices]]\n\n[[Answers]]")
 }

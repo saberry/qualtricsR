@@ -9,7 +9,8 @@
 #' This function works best as an addin for RStudio (v0.99.878 or newer).
 #' @examples
 #' insertTextEntry()
+#' @importFrom rstudioapi insertText
 #' @export
 insertTextEntry = function() {
-  rstudioapi::insertText("[[Question:TE]]\n[[ID: ]]")
+  insertText("[[Question:TE]]\n[[ID: ]]")
 }
