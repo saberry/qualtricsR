@@ -7,14 +7,15 @@
 #' @description 
 #' This function exports data from Qualtrics 
 #' into R.
-#' @usage exportQualtricsData(username = username, token = token, format = "CSV",
-#' surveyID, dropExtra = FALSE)
+#' @usage exportQualtricsData(username, token, format, surveyID, dropExtra)
 #' @param username
-#' Your username from Qualtrics.  Defaults to 'username' from qualtricsAuth 
-#' function (it has to be ran and loaded first).
+#' Your username from Qualtrics.  
+#' Defaults to 'username' from qualtricsAuth function 
+#' (it has to be ran and loaded first).
 #' @param token
-#' Your token from Qualtrics.  Defaults to 'token' from qualtricsAuth 
-#' function (it has to be ran and loaded first).
+#' Your token from Qualtrics.  
+#' Defaults to 'token' from qualtricsAuth function 
+#' (it has to be ran and loaded first).
 #' @param format
 #' Valid options include \code{XML}, \code{CSV}, \code{HTML}, 
 #' \code{JSON}; default is \code{CSV}.

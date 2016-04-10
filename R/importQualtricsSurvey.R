@@ -9,11 +9,13 @@
 #' @usage importQualtricsSurvey(username, token, format, surveyName, 
 #' inputFormat, fileLocation)
 #' @param username
-#' Your username from Qualtrics.  Defaults to 'username' from qualtricsAuth 
-#' function (it has to be ran and loaded first).
+#' Your username from Qualtrics.  
+#' Defaults to 'username' from qualtricsAuth function 
+#' (it has to be ran and loaded first).
 #' @param token
-#' Your token from Qualtrics.  Defaults to 'token' from qualtricsAuth 
-#' function (it has to be ran and loaded first).
+#' Your token from Qualtrics.  
+#' Defaults to 'token' from qualtricsAuth function 
+#' (it has to be ran and loaded first).
 #' @param format
 #' Valid options include \code{XML}, \code{JSON}, \code{JSONP}; 
 #' default is \code{XML}.
@@ -49,6 +51,7 @@
 #'                       fileLocation = "folder/location/yourSurveyName.txt")
 #' }
 #' @importFrom httr POST
+#' @importFrom httr upload_file
 #' @export
 
 importQualtricsSurvey = function (username = username, token = token, 

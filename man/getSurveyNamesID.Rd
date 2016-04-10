@@ -7,11 +7,13 @@
 getSurveyNamesID(username, token, format)
 }
 \arguments{
-\item{username}{Your username from Qualtrics.  Defaults to 'username' from qualtricsAuth 
-function (it has to be ran and loaded first).}
+\item{username}{Your username from Qualtrics.
+Defaults to 'username' from qualtricsAuth function 
+(it has to be ran and loaded first).}
 
-\item{token}{Your token from Qualtrics.  Defaults to 'token' from qualtricsAuth 
-function (it has to be ran and loaded first).}
+\item{token}{Your token from Qualtrics.
+Defaults to 'token' from qualtricsAuth function 
+(it has to be ran and loaded first).}
 
 \item{format}{Valid options include \code{XML}, \code{JSON}, \code{HTML}, 
 \code{JSON}; default is \code{CSV}.}

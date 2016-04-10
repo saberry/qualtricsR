@@ -8,11 +8,13 @@
 #' This function brings in your survey names and IDs from Qualtrics.
 #' @usage getSurveyNamesID(username, token, format)
 #' @param username
-#' Your username from Qualtrics.  Defaults to 'username' from qualtricsAuth 
-#' function (it has to be ran and loaded first).
+#' Your username from Qualtrics.  
+#' Defaults to 'username' from qualtricsAuth function 
+#' (it has to be ran and loaded first).
 #' @param token
-#' Your token from Qualtrics.  Defaults to 'token' from qualtricsAuth 
-#' function (it has to be ran and loaded first).
+#' Your token from Qualtrics.  
+#' Defaults to 'token' from qualtricsAuth function 
+#' (it has to be ran and loaded first).
 #' @param format
 #' Valid options include \code{XML}, \code{JSON}, \code{HTML}, 
 #' \code{JSON}; default is \code{CSV}.
@@ -39,6 +41,7 @@
 #' }
 #' @importFrom XML xmlParse
 #' @importFrom XML xpathSApply
+#' @importFrom XML xmlValue
 #' @importFrom httr GET
 #' @export
  
