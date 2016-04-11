@@ -12,5 +12,5 @@ Maintainer: <seth.berry@nd.edu>
 Description: This package has a number of functions for interacting with the
     Qualtrics REST API (exporting data, importing surveys, etc.). It also has some
     useful add-ins for creating 'Advanced Format' text files.
-License: GPL-2 | GPL-3
+License: MIT + file LICENSE
 RoxygenNote: 5.0.1

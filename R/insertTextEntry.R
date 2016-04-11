@@ -8,7 +8,7 @@
 #' @details 
 #' This function works best as an addin for RStudio (v0.99.878 or newer).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' insertTextEntry()
 #' }
 #' @import rstudioapi
