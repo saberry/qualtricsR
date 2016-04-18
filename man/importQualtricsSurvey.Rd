@@ -45,7 +45,8 @@ qualtricsAuth("username", "token") # You must provide these from Qualtrics.
 
 load("file/location/qualtricsAuthInfo.RData")
 
-importQualtricsSurvey(surveyName = "yourSurveyName", 
+importQualtricsSurvey(username = username, token = token, format = "XML", 
+                      surveyName = "yourSurveyName", inputFormat = "TXT",
                       fileLocation = "folder/location/yourSurveyName.txt")
 
 # Without qualtricsAuth #
