@@ -4,7 +4,7 @@
 \alias{exportQualtricsData}
 \title{Exports data from Qualtrics into R.}
 \usage{
-exportQualtricsData(username, token, format, surveyID, dropExtra)
+exportQualtricsData(username, token, surveyID, dropExtra)
 }
 \arguments{
 \item{username}{Your username from Qualtrics.
@@ -14,9 +14,6 @@ Defaults to 'username' from qualtricsAuth function
 \item{token}{Your token from Qualtrics.
 Defaults to 'token' from qualtricsAuth function 
 (it has to be ran and loaded first).}
-
-\item{format}{Valid options include \code{XML}, \code{CSV}, \code{HTML}, 
-\code{JSON}; default is \code{CSV}.}
 
 \item{surveyID}{The survey ID from Qualtrics.}
 
@@ -46,13 +43,13 @@ qualtricsAuth("username", "token") # You must provide these from Qualtrics.
 
 load("file/location/qualtricsAuthInfo.RData")
 
-exportQualtricsData(surveyID = "idString")
+exportQualtricsData(username, token, surveyID = "idString")
 
 # Without qualtricsAuth #
 
 exportQualtricsData(username = "qualtricsUser@email.address#brand", 
-                    token = "tokenString", format = "CSV", 
-                    surveyID = "idString", dropExtra = TRUE)
+                    token = "tokenString", surveyID = "idString", 
+                    dropExtra = TRUE)
 }
 }
 \author{

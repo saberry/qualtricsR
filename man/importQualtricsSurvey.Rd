@@ -4,8 +4,7 @@
 \alias{importQualtricsSurvey}
 \title{Import Advanced Format survey to Qualtrics}
 \usage{
-importQualtricsSurvey(username, token, format, surveyName, 
-inputFormat, fileLocation)
+importQualtricsSurvey(username, token, surveyName, fileLocation)
 }
 \arguments{
 \item{username}{Your username from Qualtrics.
@@ -16,15 +15,7 @@ Defaults to 'username' from qualtricsAuth function
 Defaults to 'token' from qualtricsAuth function 
 (it has to be ran and loaded first).}
 
-\item{format}{Valid options include \code{XML}, \code{JSON}, \code{JSONP}; 
-default is \code{XML}.}
-
 \item{surveyName}{What you want your survey to be named within Qualtrics.}
-
-\item{inputFormat}{The format of the file that you are importing. 
-Possible values include: \code{TXT}, \code{QSF}, \code{DOC}, or \code{MSQ}; 
-"TXT" is going to be a common file type if you are creating 
-"Advanced Format" surveys. Defaults to "TXT".}
 
 \item{fileLocation}{Where your survey file is stored locally.}
 }
@@ -45,15 +36,14 @@ qualtricsAuth("username", "token") # You must provide these from Qualtrics.
 
 load("file/location/qualtricsAuthInfo.RData")
 
-importQualtricsSurvey(username = username, token = token, format = "XML", 
-                      surveyName = "yourSurveyName", inputFormat = "TXT",
+importQualtricsSurvey(username = username, token = token,
+                      surveyName = "yourSurveyName",
                       fileLocation = "folder/location/yourSurveyName.txt")
 
 # Without qualtricsAuth #
 
 importQualtricsSurvey(username = "qualtricsUser@email.address#brand", 
-                      token = "tokenString", format = "XML", 
-                      surveyName = "yourSurveyName", inputFormat = "TXT", 
+                      token = "tokenString", surveyName = "yourSurveyName",
                       fileLocation = "folder/location/yourSurveyName.txt")
 }
 }

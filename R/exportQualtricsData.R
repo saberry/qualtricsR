@@ -7,7 +7,7 @@
 #' @description 
 #' This function exports data from Qualtrics 
 #' into R.
-#' @usage exportQualtricsData(username, token, format, surveyID, dropExtra)
+#' @usage exportQualtricsData(username, token, surveyID, dropExtra)
 #' @param username
 #' Your username from Qualtrics.  
 #' Defaults to 'username' from qualtricsAuth function 
@@ -16,9 +16,6 @@
 #' Your token from Qualtrics.  
 #' Defaults to 'token' from qualtricsAuth function 
 #' (it has to be ran and loaded first).
-#' @param format
-#' Valid options include \code{XML}, \code{CSV}, \code{HTML}, 
-#' \code{JSON}; default is \code{CSV}.
 #' @param surveyID
 #' The survey ID from Qualtrics.
 #' @param dropExtra
@@ -40,22 +37,22 @@
 #' 
 #' load("file/location/qualtricsAuthInfo.RData")
 #' 
-#' exportQualtricsData(surveyID = "idString")
+#' exportQualtricsData(username, token, surveyID = "idString")
 #' 
 #' # Without qualtricsAuth #
 #' 
 #' exportQualtricsData(username = "qualtricsUser@email.address#brand", 
-#'                     token = "tokenString", format = "CSV", 
-#'                     surveyID = "idString", dropExtra = TRUE)
+#'                     token = "tokenString", surveyID = "idString", 
+#'                     dropExtra = TRUE)
 #' }
 #' @export
  
 exportQualtricsData = function (username = username, token = token, 
-                                format = "CSV", surveyID, dropExtra = FALSE) {
+                                surveyID, dropExtra = FALSE) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getLegacyResponseData",
               "&User=", username,
               "&Token=", token,
-              "&Format=", format,
+              "&Format=CSV",
               "&SurveyID=", surveyID,
               "&ExportTags=1",
               sep = "")

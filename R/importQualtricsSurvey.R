@@ -6,8 +6,7 @@
 #' Seth Berry
 #' @description 
 #' This function imports an Advanced Format text file from R to Qualtrics.
-#' @usage importQualtricsSurvey(username, token, format, surveyName, 
-#' inputFormat, fileLocation)
+#' @usage importQualtricsSurvey(username, token, surveyName, fileLocation)
 #' @param username
 #' Your username from Qualtrics.  
 #' Defaults to 'username' from qualtricsAuth function 
@@ -16,16 +15,8 @@
 #' Your token from Qualtrics.  
 #' Defaults to 'token' from qualtricsAuth function 
 #' (it has to be ran and loaded first).
-#' @param format
-#' Valid options include \code{XML}, \code{JSON}, \code{JSONP}; 
-#' default is \code{XML}.
 #' @param surveyName
 #' What you want your survey to be named within Qualtrics.
-#' @param inputFormat
-#' The format of the file that you are importing. 
-#' Possible values include: \code{TXT}, \code{QSF}, \code{DOC}, or \code{MSQ}; 
-#' "TXT" is going to be a common file type if you are creating 
-#' "Advanced Format" surveys. Defaults to "TXT".
 #' @param fileLocation Where your survey file is stored locally.
 #' @details 
 #' You can find your username and token in your account settings. 
@@ -40,15 +31,14 @@
 #' 
 #' load("file/location/qualtricsAuthInfo.RData")
 #' 
-#' importQualtricsSurvey(username = username, token = token, format = "XML", 
-#'                       surveyName = "yourSurveyName", inputFormat = "TXT",
+#' importQualtricsSurvey(username = username, token = token,
+#'                       surveyName = "yourSurveyName",
 #'                       fileLocation = "folder/location/yourSurveyName.txt")
 #' 
 #' # Without qualtricsAuth #
 #' 
 #' importQualtricsSurvey(username = "qualtricsUser@email.address#brand", 
-#'                       token = "tokenString", format = "XML", 
-#'                       surveyName = "yourSurveyName", inputFormat = "TXT", 
+#'                       token = "tokenString", surveyName = "yourSurveyName",
 #'                       fileLocation = "folder/location/yourSurveyName.txt")
 #' }
 #' @importFrom httr POST
@@ -56,14 +46,13 @@
 #' @export
 
 importQualtricsSurvey = function (username = username, token = token, 
-                                  format = "XML", surveyName, inputFormat = "TXT", 
-                                  fileLocation) {
+                                  surveyName, fileLocation) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=importSurvey",
               "&User=", username,
               "&Token=", token,
-              "&Format=", format,
+              "&Format=XML",
               "&Name=", surveyName,
-              "&ImportFormat=", inputFormat,
+              "&ImportFormat=TXT",
               sep = "")
 
   url = gsub("[@]", "%40", url)

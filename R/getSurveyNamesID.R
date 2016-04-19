@@ -6,7 +6,7 @@
 #' Seth Berry
 #' @description 
 #' This function brings in your survey names and IDs from Qualtrics.
-#' @usage getSurveyNamesID(username, token, format)
+#' @usage getSurveyNamesID(username, token)
 #' @param username
 #' Your username from Qualtrics.  
 #' Defaults to 'username' from qualtricsAuth function 
@@ -15,9 +15,6 @@
 #' Your token from Qualtrics.  
 #' Defaults to 'token' from qualtricsAuth function 
 #' (it has to be ran and loaded first).
-#' @param format
-#' Valid options include \code{XML}, \code{JSON}, \code{HTML}, 
-#' \code{JSON}; default is \code{CSV}.
 #' @details 
 #' You can find your username and token in your account settings. 
 #' Alternatively, you can use the 'qualtricsAuth' function to store a file 
@@ -32,12 +29,12 @@
 #' 
 #' load("file/location/qualtricsAuthInfo.RData")
 #' 
-#' getSurveyNamedsID()
+#' getSurveyNamedsID(username, token)
 #' 
 #' # Without qualtricsAuth #
 #' 
 #' getSurveyNamedsID(username = "qualtricsUser@email.address#brand", 
-#'                     token = "tokenString", format = "XML")
+#'                     token = "tokenString")
 #' }
 #' @importFrom XML xmlParse
 #' @importFrom XML xpathSApply
@@ -45,11 +42,11 @@
 #' @importFrom httr GET
 #' @export
  
-getSurveyNamesID = function (username = username, token = token, format = "XML") {
+getSurveyNamesID = function (username = username, token = token) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getSurveys",
               "&User=", username,
               "&Token=", token,
-              "&Format=", format,
+              "&Format=XML",
               sep = "")
   
   url = gsub("[@]", "%40", url)

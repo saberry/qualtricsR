@@ -4,7 +4,7 @@
 \alias{getSurveyNamesID}
 \title{Get survey names and IDs from Qualtrics.}
 \usage{
-getSurveyNamesID(username, token, format)
+getSurveyNamesID(username, token)
 }
 \arguments{
 \item{username}{Your username from Qualtrics.
@@ -14,9 +14,6 @@ Defaults to 'username' from qualtricsAuth function
 \item{token}{Your token from Qualtrics.
 Defaults to 'token' from qualtricsAuth function 
 (it has to be ran and loaded first).}
-
-\item{format}{Valid options include \code{XML}, \code{JSON}, \code{HTML}, 
-\code{JSON}; default is \code{CSV}.}
 }
 \value{
 This function returns a data frame.
@@ -38,12 +35,12 @@ qualtricsAuth("username", "token") # You must provide these from Qualtrics.
 
 load("file/location/qualtricsAuthInfo.RData")
 
-getSurveyNamedsID()
+getSurveyNamedsID(username, token)
 
 # Without qualtricsAuth #
 
 getSurveyNamedsID(username = "qualtricsUser@email.address#brand", 
-                    token = "tokenString", format = "XML")
+                    token = "tokenString")
 }
 }
 \author{
