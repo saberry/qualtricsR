@@ -60,7 +60,8 @@ exportQualtricsData = function (username = username, token = token,
   url = gsub("[@]", "%40", url)
   url = gsub("[#]", "%23", url)
   
-  exportQualtricsData = read.csv(url)
+  exportQualtricsData = read.csv(url, na.strings = "", header = TRUE, 
+                                 strip.white = TRUE, stringsAsFactors = FALSE)
   exportQualtricsData = exportQualtricsData[-1, ]
   
   if (dropExtra == TRUE) {

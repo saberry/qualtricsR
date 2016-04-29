@@ -4,7 +4,7 @@ qualtricsR
 Package Description
 -------------------
 
-The **qualtricsR** package is intended to offer the most up-to-date version of the Qualtrics REST API and provide easy to use functions for interacting with the API. Several of these functions are very similar to the work that Jason Beyers was doing. However, these functions have been updated and can better deal with different brand affiliations. In addition to functions for interacting with the API, there are a few addins that make creating Advanced Format .txt files much easier.
+The **qualtricsR** package is intended to offer the most up-to-date version of the Qualtrics REST API and provide easy to use functions for interacting with the API. Several of these functions are very similar to the work that Jason Bryer was doing. However, these functions have been updated and can better deal with different brand affiliations. In addition to functions for interacting with the API, there are a few addins that make creating Advanced Format .txt files much easier.
 
 The goal with this package is to be able to create a survey without having to leave RStudio (it is important to note that you will need to go to Qualtrics to handle your logic, JS, etc.). I find the Qualtrics editor to be slow and I try to minimize copy and paste as much as possible. Creating surveys in RStudio offers massive time savings compared to clicking around in Qualtrics.
 
@@ -48,8 +48,8 @@ After running this function once, it will save the file into your project. You c
 This will import an Advanced Format .txt file into Qualtrics.
 
 ``` r
-importQualtricsSurvey("username", "token", "XML", "surveyName", 
-                      "TXT", "survey/location/file.txt")
+importQualtricsSurvey("username", "token", "surveyName", 
+                      "survey/location/file.txt")
 ```
 
 Here is a very brief example of an Advanced Format survey:
@@ -83,7 +83,7 @@ Here is a very brief example of an Advanced Format survey:
 This function is a helpful precusor to the exportQualtricsData function. That function requires a survey ID and this function will generate a data frame of survey names and IDs.
 
 ``` r
-surveyNamesID("username", "token", "XML")
+surveyNamesID("username", "token")
 ```
 
 ### exportQualtricsData
@@ -91,7 +91,7 @@ surveyNamesID("username", "token", "XML")
 This function will export data from Qualtrics into your session. It comes in as a data frame and you have the option to remove the first 10 columns if you so desire (those columns generally contain junk, but sometimes you want to keep the dates).
 
 ``` r
-exportQualtricsData("username", "token", "CSV", "idString", dropExtra = TRUE)
+exportQualtricsData("username", "token", "idString", dropExtra = TRUE)
 ```
 
 RStudio Addins
