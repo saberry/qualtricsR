@@ -42,7 +42,21 @@
 #' @importFrom httr GET
 #' @export
  
-getSurveyNamesID = function (username = username, token = token) {
+getSurveyNamesID = function (authInfo=NULL, username=NULL, token=NULL) {
+  
+  if(all(is.null(authInfo), is.null(username), is.null(token))){
+    tryCatch(
+      load('qualtricsAuthInfo.RData'),
+      error = function(c) {
+        c$message = 'No authentication info found. Please supply the RData file created by qualtricsAuth, or a username AND token.'
+        stop(c)
+      })
+  } else if (!is.null(authInfo)) {
+    load(authInfo)
+  } else if (xor(is.null(username), is.null(token))){
+    stop('No authentication info found. Please supply the RData file created by qualtricsAuth, or a username AND token.')
+  }
+  
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getSurveys",
               "&User=", username,
               "&Token=", token,
