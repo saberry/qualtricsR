@@ -50,4 +50,3 @@ importQualtricsSurvey(username = "qualtricsUser@email.address#brand",
 \author{
 Seth Berry
 }
-

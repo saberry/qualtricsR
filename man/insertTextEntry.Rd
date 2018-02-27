@@ -21,4 +21,3 @@ insertTextEntry()
 \author{
 Seth Berry
 }
-

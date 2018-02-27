@@ -22,7 +22,7 @@
 #' @examples
 #' \dontrun{
 #' 
-#' qualtricsAuth(qualtricsUser@email.address#brand, tokenString, 
+#' qualtricsAuth("qualtricsUser@email.address#brand", "tokenString", 
 #'               file = "qualtricsAuthInfo.RData")
 #' }
 #' @export

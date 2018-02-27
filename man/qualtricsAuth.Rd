@@ -28,11 +28,10 @@ You can find your username and token in your account settings.
 \examples{
 \dontrun{
 
-qualtricsAuth(qualtricsUser@email.address#brand, tokenString, 
+qualtricsAuth("qualtricsUser@email.address#brand", "tokenString", 
               file = "qualtricsAuthInfo.RData")
 }
 }
 \author{
 Seth Berry
 }
-

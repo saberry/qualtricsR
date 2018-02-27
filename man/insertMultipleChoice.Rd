@@ -21,4 +21,3 @@ insertMultipleChoice()
 \author{
 Seth Berry
 }
-

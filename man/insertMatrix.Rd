@@ -21,4 +21,3 @@ insertMatrix()
 \author{
 Seth Berry
 }
-

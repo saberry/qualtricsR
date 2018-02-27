@@ -21,4 +21,3 @@ insertPageBreak()
 \author{
 Seth Berry
 }
-
