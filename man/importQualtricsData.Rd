@@ -22,7 +22,7 @@ to keep the date.}
 \item{dropFirstRow}{Logical (default: FALSE) indicating if you want the first
 row dropped after read}
 
-\item{skip}{(default: NULL) passed into read.csv to determine the number of
+\item{skip}{(default: 0) passed into read.csv to determine the number of
 rows to skip on read}
 }
 \value{

@@ -14,7 +14,7 @@
 #'   to keep the date.
 #' @param dropFirstRow Logical (default: FALSE) indicating if you want the first
 #'  row dropped after read
-#' @param skip (default: NULL) passed into read.csv to determine the number of
+#' @param skip (default: 0) passed into read.csv to determine the number of
 #'  rows to skip on read    
 #' @details You can find your username, token, and survey ID in your account
 #' settings.
@@ -42,7 +42,8 @@
 #' @export
  
 importQualtricsData = function (username = username, token = token, 
-                                surveyID, dropExtra = FALSE, dropFirstRow = FALSE) {
+                                surveyID, dropExtra = FALSE, dropFirstRow = FALSE, 
+                                skip = 0) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getLegacyResponseData",
               "&User=", username,
               "&Token=", token,
