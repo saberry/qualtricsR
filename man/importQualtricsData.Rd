@@ -4,7 +4,7 @@
 \alias{importQualtricsData}
 \title{Imports data from Qualtrics into R.}
 \usage{
-importQualtricsData(username, token, surveyID, dropExtra)
+importQualtricsData(username, token, surveyID, dropExtra, dropFirstRow, skip)
 }
 \arguments{
 \item{username}{Your username from Qualtrics. Defaults to 'username' from

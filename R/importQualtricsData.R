@@ -3,7 +3,7 @@
 #' @aliases importQualtricsData
 #' @author Seth Berry
 #' @description This function imports data from Qualtrics into R.
-#' @usage importQualtricsData(username, token, surveyID, dropExtra)
+#' @usage importQualtricsData(username, token, surveyID, dropExtra, dropFirstRow, skip)
 #' @param username Your username from Qualtrics. Defaults to 'username' from
 #'   qualtricsAuth function (it has to be ran and loaded first).
 #' @param token Your token from Qualtrics. Defaults to 'token' from
@@ -39,6 +39,7 @@
 #'                     token = "tokenString", surveyID = "idString", 
 #'                     dropExtra = TRUE, skip = NULL, dropFirstRow = FALSE)
 #' }
+#' @importFrom readr read_csv
 #' @export
  
 importQualtricsData = function (username = username, token = token, 
@@ -55,9 +56,8 @@ importQualtricsData = function (username = username, token = token,
   url = gsub("[@]", "%40", url)
   url = gsub("[#]", "%23", url)
   
-  importQualtricsData = read.csv(url, na.strings = "", header = TRUE, 
-                                 strip.white = TRUE, stringsAsFactors = FALSE, 
-                                 skip = skip)
+  importQualtricsData = readr::read_csv(url, na = "", col_names = TRUE, 
+                                 trim_ws = TRUE, skip = skip)
   if (dropFirstRow == TRUE) {
     importQualtricsData = importQualtricsData[-1, ]
   } else {importQualtricsData = importQualtricsData}
