@@ -18,6 +18,12 @@ qualtricsAuth function (it has to be ran and loaded first).}
 \item{dropExtra}{Logical (default: FALSE) indicating if you want the first 10
 columns dropped. This is often useless data, but sometimes you might want
 to keep the date.}
+
+\item{dropFirstRow}{Logical (default: FALSE) indicating if you want the first
+row dropped after read}
+
+\item{skip}{(default: NULL) passed into read.csv to determine the number of
+rows to skip on read}
 }
 \value{
 This function returns a data frame.
@@ -47,7 +53,7 @@ importQualtricsData(username, token, surveyID = "idString")
 
 importQualtricsData(username = "qualtricsUser@email.address#brand", 
                     token = "tokenString", surveyID = "idString", 
-                    dropExtra = TRUE)
+                    dropExtra = TRUE, skip = NULL, dropFirstRow = FALSE)
 }
 }
 \author{

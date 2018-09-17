@@ -13,4 +13,4 @@ Description: This package has a number of functions for interacting with the
     Qualtrics REST API (exporting data, importing surveys, etc.). It also has some
     useful add-ins for creating 'Advanced Format' text files.
 License: MIT + file LICENSE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

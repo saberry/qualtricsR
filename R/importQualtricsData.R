@@ -12,6 +12,10 @@
 #' @param dropExtra Logical (default: FALSE) indicating if you want the first 10
 #'   columns dropped. This is often useless data, but sometimes you might want
 #'   to keep the date.
+#' @param dropFirstRow Logical (default: FALSE) indicating if you want the first
+#'  row dropped after read
+#' @param skip (default: NULL) passed into read.csv to determine the number of
+#'  rows to skip on read    
 #' @details You can find your username, token, and survey ID in your account
 #' settings.
 #' Alternatively, you can use the 'qualtricsAuth' function to store a file with
@@ -33,12 +37,12 @@
 #' 
 #' importQualtricsData(username = "qualtricsUser@email.address#brand", 
 #'                     token = "tokenString", surveyID = "idString", 
-#'                     dropExtra = TRUE)
+#'                     dropExtra = TRUE, skip = NULL, dropFirstRow = FALSE)
 #' }
 #' @export
  
 importQualtricsData = function (username = username, token = token, 
-                                surveyID, dropExtra = FALSE) {
+                                surveyID, dropExtra = FALSE, dropFirstRow = FALSE) {
   url = paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getLegacyResponseData",
               "&User=", username,
               "&Token=", token,
@@ -51,8 +55,12 @@ importQualtricsData = function (username = username, token = token,
   url = gsub("[#]", "%23", url)
   
   importQualtricsData = read.csv(url, na.strings = "", header = TRUE, 
-                                 strip.white = TRUE, stringsAsFactors = FALSE)
-  importQualtricsData = importQualtricsData[-1, ]
+                                 strip.white = TRUE, stringsAsFactors = FALSE, 
+                                 skip = skip)
+  if (dropFirstRow == TRUE) {
+    importQualtricsData = importQualtricsData[-1, ]
+  } else {importQualtricsData = importQualtricsData}
+  
   
   if (dropExtra == TRUE) {
     importQualtricsData[-c(1:10)]
