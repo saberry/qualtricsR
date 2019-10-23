@@ -86,12 +86,31 @@ This function is a helpful precusor to the exportQualtricsData function. That fu
 surveyNamesID("username", "token")
 ```
 
-### exportQualtricsData
+### importQualtricsDataV3
 
-This function will export data from Qualtrics into your session. It comes in as a data frame and you have the option to remove the first 10 columns if you so desire (those columns generally contain junk, but sometimes you want to keep the dates).
+This function will import data from Qualtrics into your session. It comes in as a data table from the data.table package.
 
 ``` r
-exportQualtricsData("username", "token", "idString", dropExtra = TRUE)
+dataTest <- importQualtricsDataV3(token = "yourAPIToken",
+                                  dataCenter = "ca1", surveyID = "yourSurveyID")
+```
+
+### surveyWriter
+
+This function takes a data frame and converts it to an Advanced Format text file for directly importing into Qualtrics. You can write the survey in a csv, Excel, or even a data frame directly. It needs to have a "question" column and a "responseOption" column (the "questionID" column is optional).
+
+``` r
+questions <- data.frame(question = c("I enjoy coding.",
+                                    "To what extent do you hate or love R?", "Done?"),
+                       responseOptions = c("No;Yes", 
+                                           "Strongly hate;Hate;Neither;Love;Strongly love", 
+                                           "No;Maybe;Yes"),
+                       questionID = c("enjoyCode", "hateLoveR", "done"), 
+                       stringsAsFactors = FALSE)
+
+
+surveyWriter(completeSurveyDataFrame = questions, roSeparator = ";", 
+             pageBreakEvery = 2)
 ```
 
 RStudio Addins
