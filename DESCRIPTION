@@ -7,7 +7,8 @@ Depends:
     XML,
     httr,
     rstudioapi,
-    readr
+    readr,
+    data.table
 Author: Seth Berry
 Maintainer: <seth.berry@nd.edu>
 Description: This package has a number of functions for interacting with the
