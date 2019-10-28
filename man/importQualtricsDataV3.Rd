@@ -38,11 +38,11 @@ qualtricsAuth("username", "token") # You must provide these from Qualtrics.
 
 load("file/location/qualtricsAuthInfo.RData")
 
-dataTest <- getQualtricsData(token, dataCenter, surveyID)
+dataTest <- importQualtricsDataV3(token, dataCenter, surveyID)
 
 # Without qualtricsAuth #
 
-dataTest <- getQualtricsData(token = "yourAPIToken",
+dataTest <- importQualtricsDataV3(token = "yourAPIToken",
                             dataCenter = "ca1", surveyID = "yourSurveyID")
 }
 }

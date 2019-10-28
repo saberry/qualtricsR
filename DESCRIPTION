@@ -1,7 +1,7 @@
 Package: qualtricsR
 Type: Package
 Title: Functions for interacting with the Qualtrics REST API
-Version: 0.5
+Version: 0.70
 Date: 2015-01-06
 Depends:
     XML,
@@ -9,10 +9,13 @@ Depends:
     rstudioapi,
     readr,
     data.table
+Imports:    
+    dplyr,
+    reshape2
 Author: Seth Berry
 Maintainer: <seth.berry@nd.edu>
 Description: This package has a number of functions for interacting with the
     Qualtrics REST API (exporting data, importing surveys, etc.). It also has some
     useful add-ins for creating 'Advanced Format' text files.
 License: MIT + file LICENSE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

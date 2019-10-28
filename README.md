@@ -95,7 +95,7 @@ dataTest <- importQualtricsDataV3(token = "yourAPIToken",
                                   dataCenter = "ca1", surveyID = "yourSurveyID")
 ```
 
-### surveyWriter
+### qualtricsSurveyWriter
 
 This function takes a data frame and converts it to an Advanced Format text file for directly importing into Qualtrics. You can write the survey in a csv, Excel, or even a data frame directly. It needs to have a "question" column and a "responseOption" column (the "questionID" column is optional).
 
@@ -109,7 +109,7 @@ questions <- data.frame(question = c("I enjoy coding.",
                        stringsAsFactors = FALSE)
 
 
-surveyWriter(completeSurveyDataFrame = questions, roSeparator = ";", 
+qualtricsSurveyWriter(completeSurveyDataFrame = questions, roSeparator = ";", 
              pageBreakEvery = 2)
 ```
 

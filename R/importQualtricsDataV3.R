@@ -32,6 +32,8 @@
 #' dataTest <- importQualtricsDataV3(token = "yourAPIToken",
 #'                             dataCenter = "ca1", surveyID = "yourSurveyID")
 #' }
+#' @importFrom httr add_headers
+#' @importFrom httr content
 #' @importFrom httr GET
 #' @importFrom httr POST
 #' @importFrom data.table fread
@@ -64,14 +66,12 @@ importQualtricsDataV3 <- function(token, dataCenter, surveyID) {
       progressComplete <- GET(url = progressLink,
                               add_headers(.headers = requestHeaders))
       
-      
       fileID <- content(progressComplete)$`result`$`fileId`
       
       return(fileID)
    }
    
    fileID <- fileIDFunction()
-   
    
    while(is.null(fileID)) {
       fileID <- fileIDFunction()
@@ -82,7 +82,7 @@ importQualtricsDataV3 <- function(token, dataCenter, surveyID) {
                          sep = "")
    
    downloadData <- GET(url = downloadLink,
-                       add_headers(.headers = requestHeaders), progress())
+                       add_headers(.headers = requestHeaders))
    
    out <- data.table::fread(content(downloadData, as = "text"))
    

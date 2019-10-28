@@ -1,15 +1,15 @@
 #' Creates an Advanced Format text file from csv.
 #' 
-#' @aliases createAdvancedFormat
+#' @aliases qualtricsSurveyWriter
 #' @author Seth Berry
-#' @description This function creates a text file for import into Qualtrics.
-#' @usage surveyWriter(completeSurveyDataFrame, roSeparator, pageBreakEvery,
+#' @description This function creates an Advanced Format text file for import into Qualtrics.
+#' @usage qualtricsSurveyWriter(completeSurveyDataFrame, roSeparator, pageBreakEvery,
 #'                           outputFileName)
 #' @param completeSurveyDataFrame The complete data frame containing the survey. 
 #' Can be created as a data frame or read in from a file. Should contain 
 #' variables called "question" (contains the question text), "responseOptions" (
 #' contains the response option for each question, separated by some delimiter), 
-#' and optionally "questionID" (the ID used in Qualtrics).
+#' and optionally "id" (the ID used in Qualtrics).
 #' @param roSeparator Character (default: ";") The character used for separating
 #' the response options.
 #' @param pageBreakEvery (default: 0) How many questions on a page before 
@@ -25,19 +25,34 @@
 #'                        responseOptions = c("No;Yes", 
 #'                                            "Strongly hate;Hate;Neither;Love;Strongly love", 
 #'                                            "No;Maybe;Yes"),
-#'                        questionID = c("enjoyCode", "hateLoveR", "done"), 
+#'                        id = c("enjoyCode", "hateLoveR", "done"), 
 #'                        stringsAsFactors = FALSE)
 #' 
 #' 
-#' surveyWriter(completeSurveyDataFrame = questions, roSeparator = ";", 
+#' qualtricsSurveyWriter(completeSurveyDataFrame = questions, roSeparator = ";", 
 #'              pageBreakEvery = 2)
 #' }
+#' @importFrom dplyr arrange
+#' @importFrom reshape2 melt
+#' @importFrom data.table fread
 #' @export
 
-surveyWriter <- function(completeSurveyDataFrame,  
+qualtricsSurveyWriter <- function(completeSurveyDataFrame,  
                          roSeparator = ";", pageBreakEvery = 0, outputFileName = "surveyOut.txt") {
   
-  sink(outputFileName)
+  rowID <- NULL
+  
+  variable <- NULL
+  
+  if(!(is.null(completeSurveyDataFrame$id))) {
+    completeSurveyDataFrame$id <- paste("[[ID:", 
+                                        completeSurveyDataFrame$id, 
+                                        "]]", sep = "")
+  } else {
+    completeSurveyDataFrame$id <- paste("[[ID:", 
+                                        gsub("\\s", "_", completeSurveyDataFrame$id), "]]", 
+                                        sep = "")
+  }
   
   if(pageBreakEvery != 0) {
     
@@ -50,48 +65,31 @@ surveyWriter <- function(completeSurveyDataFrame,
     
     completeSurveyDataFrame[(rowCount + 1):(rowCount + length(breakNumbers)), ] <- ""
     
-    completeSurveyDataFrame$question[(rowCount + 1):(rowCount + length(breakNumbers))] <- "[[PageBreak]]"
+    completeSurveyDataFrame$question[(rowCount + 1):(rowCount + length(breakNumbers))] <- "[[PageBreak]]\n"
     
     completeSurveyDataFrame$rowID[(rowCount + 1):(rowCount + length(breakNumbers))] <- breakNumbers
     
     completeSurveyDataFrame <- completeSurveyDataFrame[order(completeSurveyDataFrame$rowID), ]
-  }
+  } else completeSurveyDataFrame$rowID = 1:nrow(completeSurveyDataFrame)
   
-  numberQuestions <- nrow(completeSurveyDataFrame)
+  meltedSurvey <- melt(completeSurveyDataFrame, id.vars = "rowID", factorsAsStrings = TRUE)
   
-  question <- completeSurveyDataFrame$question
+  meltedSurvey <- arrange(meltedSurvey, rowID, as.character(variable))
   
-  if(!(is.null(completeSurveyDataFrame$questionID))) {
-    questionID <- completeSurveyDataFrame$questionID
-  }
+  meltedSurvey$value[which(meltedSurvey$variable == "id" & meltedSurvey$value != "")] <- 
+    paste("[[Question:MC]]", "\n", 
+          meltedSurvey$value[which(meltedSurvey$variable == "id" & meltedSurvey$value != "")],
+          sep = "")
   
-  responseOptions <- completeSurveyDataFrame$responseOptions
+  meltedSurvey$value[which(meltedSurvey$variable == "responseOptions" & meltedSurvey$value != "")] <- 
+    paste("[[Choices]]", "\n", 
+          meltedSurvey$value[which(meltedSurvey$variable == "responseOptions" & meltedSurvey$value != "")],
+          "\n",
+          sep = "")
   
-  cat("[[AdvancedFormat]]")
+  meltedSurvey <- unlist(strsplit(meltedSurvey$value, roSeparator))
   
-  lapply(1:numberQuestions, function(x) {
-    if(question[x] == "[[PageBreak]]") {
-      cat(paste("\n", question[x], "\n", sep = "\n"))
-    } else {
-      
-      if(!(is.null(questionID[x]))) {
-        idField <- paste("[[ID:", questionID[x], "]]", sep = "")
-      } else {
-        idField <- paste("[[ID:", gsub("\\s", "_", question[x]), "]]", sep = "")
-      }
-      
-      responseOptionsFormatted <- paste(unlist(strsplit(responseOptions[x], roSeparator)), collapse = "\n")
-      
-      questionWrite <- paste("\n", "[[Question:MC]]", 
-                             idField,  
-                             question[x],  
-                             "[[Choices]]",  
-                             responseOptionsFormatted, sep = "\n")
-      
-      cat(questionWrite)
-    }
-    
-  })
+  meltedSurvey[1] <- paste("[[AdvancedFormat]]\n", meltedSurvey[1], sep = "\n")
   
-  sink()
+  writeLines(meltedSurvey, outputFileName)
 }
