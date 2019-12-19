@@ -8,10 +8,13 @@ Depends:
     httr,
     rstudioapi,
     readr,
-    data.table
+    data.table, 
 Imports:    
     dplyr,
-    reshape2
+    reshape2, 
+    ROI.plugin.glpk, 
+    ompr.roi,
+    ompr
 Author: Seth Berry
 Maintainer: <seth.berry@nd.edu>
 Description: This package has a number of functions for interacting with the
