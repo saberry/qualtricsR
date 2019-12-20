@@ -84,7 +84,19 @@ importQualtricsDataV3 <- function(token, dataCenter, surveyID) {
    downloadData <- GET(url = downloadLink,
                        add_headers(.headers = requestHeaders))
    
-   out <- data.table::fread(content(downloadData, as = "text"))
+   outContent <- content(downloadData, as = "text")
+   
+   namesOnly <- data.table::fread(outContent, nrows = 1)
+   
+   out <- data.table::fread(outContent, skip = 2, header = TRUE)
+   
+   names(out) <- names(namesOnly)
+   
+   varLables <- out[1, ]
+   
+   Hmisc::label(out) <- varLables
+   
+   out <- out[-c(1:2), ]
    
    return(out)
 }
