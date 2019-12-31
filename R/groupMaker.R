@@ -3,8 +3,8 @@
 #' @aliases groupMaker
 #' @author Seth Berry
 #' @description This function takes a vector of student names and creates groups.
-#' @usage groupMaker(nameData, groupNumber, groupSizeMin, groupSizeMax)
-#' @param nameData A vector of student names.
+#' @usage groupMaker(groupData, groupNumber, groupSizeMin, groupSizeMax)
+#' @param groupData Data from online student photos.
 #' @param groupNumber How many groups you want.
 #' @param groupSizeMin The minimum number of students per group.
 #' @param groupSizeMax The maximum number of students per group.
@@ -16,7 +16,7 @@
 #' studentNames <- c("Thomas", "Dirk", "John", "Brian", "Jenny", "Michael", 
 #' "Bill", "Martin", "Douglas", "Hadley")
 #' 
-#' groupMaker(nameData = studentNames, groupNumber = 3, 
+#' groupMaker(groupData = studentNames, groupNumber = 3, 
 #' groupSizeMin = 3, groupSizeMax = 4)
 #' 
 #' }
@@ -36,9 +36,9 @@
 #' @import ROI.plugin.glpk
 #' @export
 
-groupMaker <- function(nameData, groupNumber, groupSizeMin, groupSizeMax) {
+groupMaker <- function(groupData, groupNumber, groupSizeMin, groupSizeMax) {
   
-  n <- length(nameData)
+  n <- nrow(groupData)
   
   m <- groupNumber
   
@@ -46,7 +46,7 @@ groupMaker <- function(nameData, groupNumber, groupSizeMin, groupSizeMax) {
   
   capacity <- rep.int(groupSizeMax, m)
   
-  groupData <- data.frame(name = nameData, rowID = 1:n)
+  groupData <- data.frame(name = groupData$Netid, rowID = 1:n)
   
   studentTranspose <- matrix(1, ncol =  n)
   

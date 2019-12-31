@@ -4,10 +4,10 @@
 \alias{groupMaker}
 \title{Assigns students to teams with 0/1 programming.}
 \usage{
-groupMaker(nameData, groupNumber, groupSizeMin, groupSizeMax)
+groupMaker(groupData, groupNumber, groupSizeMin, groupSizeMax)
 }
 \arguments{
-\item{nameData}{A vector of student names.}
+\item{groupData}{Data from online student photos.}
 
 \item{groupNumber}{How many groups you want.}
 
@@ -30,7 +30,7 @@ The
 studentNames <- c("Thomas", "Dirk", "John", "Brian", "Jenny", "Michael", 
 "Bill", "Martin", "Douglas", "Hadley")
 
-groupMaker(nameData = studentNames, groupNumber = 3, 
+groupMaker(groupData = studentNames, groupNumber = 3, 
 groupSizeMin = 3, groupSizeMax = 4)
 
 }

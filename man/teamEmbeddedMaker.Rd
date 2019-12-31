@@ -18,7 +18,8 @@ group.
 This function takes a vector of student names and creates groups.
 }
 \details{
-This is most useful for creating embedded data fields for Qualtrics.
+This is most useful for creating embedded data fields for Qualtrics. 
+It is best to use the object returned from the groupMaker function.
 }
 \examples{
 \dontrun{
@@ -26,7 +27,7 @@ This is most useful for creating embedded data fields for Qualtrics.
 teamAssignment <- data.frame(name = c("Thomas", "Dirk", "John", "Brian", "Jenny", "Michael", 
 "Bill", "Martin", "Douglas", "Hadley"), team = c(rep(1, 3), rep(2, 4), rep(3, 3)))
 
-teamEmbeddedMaker(teamAssignment, teamAssignment$team)
+teamEmbeddedMaker(teamAssignment)
 
 }
 }

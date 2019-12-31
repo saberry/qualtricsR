@@ -6,7 +6,8 @@
 #' @usage teamEmbeddedMaker(teamAssignment)
 #' @param teamAssignmentData A data frame with student names (called "name") and
 #' teams (called "teams").
-#' @details This is most useful for creating embedded data fields for Qualtrics.
+#' @details This is most useful for creating embedded data fields for Qualtrics. 
+#' It is best to use the object returned from the groupMaker function.
 #' @return This will return a data frame with the crossing of students for each
 #' group.
 #' @examples
@@ -15,7 +16,7 @@
 #' teamAssignment <- data.frame(name = c("Thomas", "Dirk", "John", "Brian", "Jenny", "Michael", 
 #' "Bill", "Martin", "Douglas", "Hadley"), team = c(rep(1, 3), rep(2, 4), rep(3, 3)))
 #' 
-#' teamEmbeddedMaker(teamAssignment, teamAssignment$team)
+#' teamEmbeddedMaker(teamAssignment)
 #' 
 #' }
 #' @importFrom dplyr mutate_at
@@ -31,7 +32,11 @@ teamEmbeddedMaker <- function(teamAssignmentData){
   
   teamAssignment <- teamAssignmentData
   
+  teamLength <- max(teamAssignment$team)
+  
   allMembers <- lapply(1:teamLength, function(x) {
+    
+    # browser()
     
     smallSample <- teamAssignment[teamAssignment$team == x, ]  
     
@@ -72,10 +77,12 @@ teamEmbeddedMaker <- function(teamAssignmentData){
       testDat[1, needs[[j]][1:ncol(testDat)]]
     })
     
-    tmp <- data.table::rbindlist(tmp)
+    tmp <- data.table::rbindlist(tmp, use.names = FALSE)
+    tmp[, "team"] = x
+    return(tmp)
   })
   
-  allMembers <- data.table::rbindlist(allMembers, fill = TRUE)
+  allMembers <- data.table::rbindlist(allMembers, fill = TRUE, use.names = TRUE)
   
   return(allMembers)
 }
