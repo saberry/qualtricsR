@@ -36,6 +36,7 @@
 #' @importFrom httr content
 #' @importFrom httr GET
 #' @importFrom httr POST
+#' @importFrom Hmisc label
 #' @importFrom data.table fread
 #' @export
 
@@ -94,7 +95,7 @@ importQualtricsDataV3 <- function(token, dataCenter, surveyID) {
    
    varLables <- out[1, ]
    
-   Hmisc::label(out) <- varLables
+   label(out) <- varLables
    
    out <- out[-c(1:2), ]
    

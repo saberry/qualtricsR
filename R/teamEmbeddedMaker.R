@@ -22,7 +22,7 @@
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr mutate
 #' @importFrom dplyr lead
-#' @importFrom dplyr %>%
+#' @importFrom magrittr %>%
 #' @importFrom dplyr n
 #' @importFrom tidyr pivot_wider
 #' @importFrom data.table rbindlist
@@ -77,12 +77,12 @@ teamEmbeddedMaker <- function(teamAssignmentData){
       testDat[1, needs[[j]][1:ncol(testDat)]]
     })
     
-    tmp <- data.table::rbindlist(tmp, use.names = FALSE)
+    tmp <- rbindlist(tmp, use.names = FALSE)
     tmp[, "team"] = x
     return(tmp)
   })
   
-  allMembers <- data.table::rbindlist(allMembers, fill = TRUE, use.names = TRUE)
+  allMembers <- rbindlist(allMembers, fill = TRUE, use.names = TRUE)
   
   return(allMembers)
 }

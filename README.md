@@ -128,3 +128,9 @@ When you use an addin, something like the following will be inserted in your tex
     [[Answers]]
 
 All you need to do now is to fill in the information.
+
+
+Group Work Functions
+--------------------
+
+Everything below will eventually move into its own package. For now, though, they live here in qualtricsR

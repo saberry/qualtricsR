@@ -9,7 +9,7 @@ Depends:
     rstudioapi,
     readr,
     data.table
-Imports:    
+Imports: 
     dplyr,
     reshape2, 
     ROI.plugin.glpk, 
@@ -22,4 +22,4 @@ Description: This package has a number of functions for interacting with the
     Qualtrics REST API (exporting data, importing surveys, etc.). It also has some
     useful add-ins for creating 'Advanced Format' text files.
 License: MIT + file LICENSE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2

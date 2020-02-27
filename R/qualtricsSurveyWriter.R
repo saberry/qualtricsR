@@ -70,6 +70,7 @@ qualtricsSurveyWriter <- function(completeSurveyDataFrame,
     completeSurveyDataFrame$rowID[(rowCount + 1):(rowCount + length(breakNumbers))] <- breakNumbers
     
     completeSurveyDataFrame <- completeSurveyDataFrame[order(completeSurveyDataFrame$rowID), ]
+    
   } else completeSurveyDataFrame$rowID = 1:nrow(completeSurveyDataFrame)
   
   meltedSurvey <- melt(completeSurveyDataFrame, id.vars = "rowID", factorsAsStrings = TRUE)
