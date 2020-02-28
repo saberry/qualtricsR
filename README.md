@@ -12,7 +12,7 @@ Unfortunately, Qualtrics does not just give away access to their API, so your ac
 
 ### Future Goals
 
-My ultimate goal is to have as many API functions as possible; I am just starting out with the ones I frequently use. The [website](https://survey.qualtrics.com/WRAPI/ControlPanel/docs.php) for the control panel API has all of the functions. Personally, I would not have much use for some of them; therefore, I plan to focus my efforts on the *Panel Requests* and the *Survey Requests*.
+My ultimate goal is to have as many API functions as possible; I am just starting out with the ones I frequently use. The [website](https://api.qualtrics.com/) for the control panel API has all of the functions. Personally, I would not have much use for some of them; therefore, I plan to focus my efforts on the *Panel Requests* and the *Survey Requests*.
 
 In addition to creating more functions, I plan to create more addins. The [list](http://www.qualtrics.com/university/researchsuite/advanced-building/advanced-options-drop-down/import-and-export-surveys/#PreparingATXTFileInAdvancedFormatForImporting) of possible tags for the Advanced Format is not terribly long, so I will likely get something for all of them soon.
 
@@ -28,7 +28,7 @@ devtools::install_github('saberry/qualtricsR')
 REST API Functions
 ------------------
 
-This package contains a few functions for interacting with the Qualtrics REST API. The main point is to be able to create a survey and then get your data without ever needing to go into Qualtrics. There will be more functions added over time, but this is just a start.
+This package contains a few functions for interacting with the Qualtrics REST API (version 3). The main point is to be able to create a survey and then get your data without ever needing to go into Qualtrics. There will be more functions added over time, but this is just a start.
 
 ### qualtricsAuth
 

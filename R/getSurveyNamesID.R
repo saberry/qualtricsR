@@ -55,18 +55,36 @@ getSurveyNamesID <- function(username = NULL, token = NULL) {
     stop('No authentication info found. Please supply the RData file created by qualtricsAuth, or a username AND token.')
   }
   
-  url <- paste("https://survey.qualtrics.com//WRAPI/ControlPanel/api.php?Version=2.5&Request=getSurveys",
-              "&User=", username,
-              "&Token=", token,
-              "&Format=XML",
-              sep = "")
+  baseUrl <- paste("https://", 
+                   dataCenter, 
+                   ".qualtrics.com/API/v3/surveys",
+                   sep = "")
   
-  url <- gsub("[@]", "%40", url)
-  url <- gsub("[#]", "%23", url)
+  baseUrl <- gsub("[@]", "%40", baseUrl)
+  baseUrl <- gsub("[#]", "%23", baseUrl)
   
-  surveynames <- GET(url)
+  requestHeaders <- c("Content-Type" = "application/json", 
+                      "X-API-TOKEN" = token)
   
-  xmlNames <- xmlParse(surveynames)
+  surveynames <- GET(url = baseUrl,
+                            add_headers(.headers = requestHeaders), 
+                            encode = "json")
+  
+  surveyNamesDF <- jsonlite::fromJSON(content(surveynames, as = "text"))$result$elements
+  
+  nextPageFunction <- function(nextPageURL) {
+    nextPageResults <- GET(url = nextPageURL,
+                           add_headers(.headers = requestHeaders), 
+                           encode = "json")
+    
+    surveyNamesDF <- jsonlite::fromJSON(content(surveynames, as = "text"))$result$elements
+    
+    
+  }
+  
+  if(length(surveyNamesDF$result$nextPage) > 0) {
+    
+  }
   
   namesID <- data.frame(ID = xpathSApply(xmlNames, "//SurveyID", xmlValue), 
                        Name = xpathSApply(xmlNames, "//SurveyName", xmlValue))
