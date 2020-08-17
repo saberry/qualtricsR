@@ -97,7 +97,5 @@ importQualtricsDataV3 <- function(token, dataCenter, surveyID) {
    
    label(out) <- varLables
    
-   out <- out[-c(1:2), ]
-   
    return(out)
 }
