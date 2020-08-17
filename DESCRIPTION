@@ -8,7 +8,8 @@ Depends:
     httr,
     rstudioapi,
     readr,
-    data.table
+    data.table,
+    Hmisc
 Imports: 
     dplyr,
     reshape2, 
